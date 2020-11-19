@@ -14,6 +14,55 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+// MY ATTEMPT
+// function pyramid(n) {
+//   for (let i = 0; i < n; i++) {
+//     let level = '';
+//     for (let j = 0; j < (n * 2) - 1 ; j++) {
+//       if () {
+//         stair += '#';
+//       } else {
+//         stair += ' ';
+//       }
+//     }
+//     console.log(stair);
+//   }
+// }
+
+// SOLUTION  1
+// function pyramid(n) {
+//   const midpoint = Math.floor((n * 2 - 1) / 2);
+//   for (let i = 0; i < n; i++) {
+//     let level = '';
+//     for (let j = 0; j < (n * 2) - 1 ; j++) {
+//       if (midpoint - i <= j && midpoint + i >= j) {
+//         level += '#';
+//       } else {
+//         level += ' ';
+//       }
+//     }
+//     console.log(level);
+//   }
+// }
+
+
+// SOLUTION 2: RECURSION
+function pyramid(n, row = 0, level = '') {
+  if (row === n) {
+    return;
+  }
+  if (level.length === (n * 2) - 1) {
+    console.log(level);
+    return pyramid (n, row + 1);
+  }
+  const midpoint = Math.floor((n * 2 - 1) / 2);
+  let add;
+  if (midpoint - row <= level.length && midpoint + row >= level.length) {
+    add = '#';
+  } else {
+      add = ' ';
+  }
+  pyramid(n, row, level + add);
+}
 
 module.exports = pyramid;
